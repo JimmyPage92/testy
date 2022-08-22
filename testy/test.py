@@ -83,3 +83,7 @@ def test_except_exception_when_we_provide_wrong_pos(): ### ten test rzuca blad -
 
 
 
+
+
+
+#zad. 6
