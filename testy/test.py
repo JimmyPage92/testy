@@ -1,7 +1,19 @@
+import unittest
+
 from functionality.zadania import *
 import pytest
 
 #zad 1
+# z uzyciem klasy
+class TestIsPrime:
+
+    def test_should_return_YES_when_we_provide_first_num(self):
+        num = 5
+
+        assert is_num_prime(num) == True
+
+
+#bez uzycia klasy
 def test_should_return_YES_when_we_provide_first_num():
     num = 5
 
@@ -43,11 +55,13 @@ def test_return_list_todos_without_chosen_to_deleted_note():
     todos.remove(pos)
     assert "Clean my room" not in todos
 
-def test_return_TODOS_with_changed_chosen_note():
-    content = 'Get up from bed'
+def test_return_TODOS_with_changed_chosen_note(): #### rzuca blad
+    # todos = ["Get up from bed", "Make my bed", "Go to school", "Do school homework"]
     pos = 0
-    todos[pos] = content
-    assert "Get up from bed" in todos
+
+    content = "Get up from bed"
+    edit_todo(pos, content)
+    assert content in todos
 
 
 def test_return_empty_list_TODOS_after_deleted_all_notes():
@@ -55,8 +69,17 @@ def test_return_empty_list_TODOS_after_deleted_all_notes():
 
 # Zapewnij sprawdzenie przypadków, w których zostanie rzucony wyjątek.
 
-def test_expect_when_TODOS_is_empty():
+def test_expect_exception_when_TODOS_is_empty():
     with pytest.raises(NoMoreTodos):
-        pos = 1
-        check_pos(pos)
-        pass
+        check_pos(0)
+
+
+def test_except_exception_when_we_provide_wrong_pos(): ### ten test rzuca blad -->
+    with pytest.raises(NoSuchItemNumber):
+        check_pos(5)
+
+
+#zad 5
+
+
+

@@ -75,21 +75,17 @@ Zapewnij sprawdzenie przypadków, w których zostanie rzucony wyjątek.
 
 todos = ["Clean my room", "Make my bed", "Go to school", "Do school homework"]
 class NoMoreTodos(Exception):
-    def __init__(self, message='No more todos'):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 class NoSuchItemNumber(Exception):
-    def __init__(self, message = "No such item number!"):
-        self.message = message
-
+    pass
 
 
 def check_pos(pos):
     if len(todos) == 0:
-        raise NoMoreTodos()
+        raise NoMoreTodos
     elif pos >= len(todos) or pos < 0:
-        raise Exception("No such item number!")
+        raise NoSuchItemNumber
 
 def add_todo(content):
     todos.append(content)
@@ -119,6 +115,7 @@ print(f'puste notatki: {todos}')
 
 '''
 Rozważ poniższy program:
+'''
 def calc_diff(case):
     end_time = case['end_time']
     start_time = case['start_time']
@@ -136,12 +133,14 @@ def main():
         'end_time' : None # None means that case is currently going on
     }
 
-print(calc_diff(case))
-if _name__ == "__main__" :
-    main()
-'''
+    print(calc_diff(case))
 
-'''Odpowiedzialny jest on za wyliczanie różnicy czasowej (podanej w
+if __name__ == "__main__" :
+    main()
+
+
+'''
+Odpowiedzialny jest on za wyliczanie różnicy czasowej (podanej w
 sekundach) między start_time oraz end_time.
 Napisz test, który będzie sprawdzał poprawne działanie funkcji calc_diff.
 Podpowiedź:
