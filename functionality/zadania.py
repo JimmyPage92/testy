@@ -109,7 +109,7 @@ edit_todo(0,"Get up from bed")
 print(todos)
 remove_all()
 
-print(f'puste notatki: {todos}')
+print(f'Teraz mamy puste notatki: {todos}')
 
 #zad.5
 
@@ -138,11 +138,11 @@ def main():
 if __name__ == "__main__" :
     main()
 
-
 '''
 Odpowiedzialny jest on za wyliczanie różnicy czasowej (podanej w
 sekundach) między start_time oraz end_time.
-Napisz test, który będzie sprawdzał poprawne działanie funkcji calc_diff.
+Napisz test, który będzie sprawdzał poprawne działanie funkcji 
+calc_diff.
 Podpowiedź:
 Tylko tyle, albo aż tyle! Zauważ, że konieczne będzie zamockowanie
 datetime.now(). Dlaczego? To już zostawiam Twoim dywagacjom
@@ -160,13 +160,13 @@ DB_PASSWORD: str = config( 'DB_PASSWORD' )
 OK_MSG: str = config( 'OK_MSG' )
 NOK_MSG: str = config( 'NOK_MSG' )
 class DbHandler :
-def connect_to_database (self):
-return f"I am connecting to {Config.DB_URL} as
-{Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
-def show_msg_when_connected (self):
-return f"{Config.OK_MSG}"
-def show_msg_when_interrputed (self):
-return f"{Config.NOK_MSG}"
+    def connect_to_database (self):
+        return f"I am connecting to {Config.DB_URL} as
+            {Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
+    def show_msg_when_connected (self):
+        return f"{Config.OK_MSG}"
+    def show_msg_when_interrputed (self):
+        return f"{Config.NOK_MSG}"
 W powyższym kodzie użyliśmy biblioteki python-decouple, która
 umożliwia odczytywanie wartości do kodu ze specjalnego pliku .env
 (Takie rozwiązanie jest często wykorzystywane, gdy nie chcemy

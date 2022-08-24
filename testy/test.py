@@ -1,6 +1,8 @@
 import unittest
-
+from datetime import datetime, timezone
+import functionality.zadania
 from functionality.zadania import *
+from functionality.zadania import calc_diff
 import pytest
 
 #zad 1
@@ -83,6 +85,14 @@ def test_except_exception_when_we_provide_wrong_pos(): ### ten test rzuca blad -
 
 
 
+def test_calc_diff(mocker):
+
+    start_time = '2021-11-03T09:22:28+00:00'
+    func = calc_diff()
+    end_time = mocker.patch(functionality.zadania.calc_diff,end_time=datetime.now(timezone.utc))
+
+    expected = end_time - start_time
+    assert func == expected
 
 
 
