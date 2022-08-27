@@ -95,7 +95,16 @@ def test_calc_diff(mocker):
     assert calc_diff(case) == expected
 
 #zad. 6
+#czy w tym zadaniu najpierw trzeba zamokowac STALE z klasy Config ?? i dopiero przetestowac klase
+# DBHANDLER
 
-def test_class_dbhandler(mocker):
-    mock_my_class=mocker.patch("functionality.zadania.DbHandler") #makieta calej klasy dbhandler
-    mock_my_class_show_msg_when_connected=
+# def test_class_config(mocker):
+#
+#     mocker.patch.object(functionality.zadania.Config, 'DB_URL', config('DB_URL'))
+#     expected='DB_URL'
+#     actual=Config()
+#
+#     assert expected == actual
+
+def test_class_dbhandler():
+    pass

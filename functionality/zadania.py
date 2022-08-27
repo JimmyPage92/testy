@@ -170,6 +170,9 @@ class DbHandler:
     def show_msg_when_interrputed(self):
         return f"{Config.NOK_MSG}"
 
+x=DbHandler().show_msg_when_connected()
+
+print(x)
 '''
 W powyższym kodzie użyliśmy biblioteki python-decouple, która
 umożliwia odczytywanie wartości do kodu ze specjalnego pliku .env
