@@ -1,9 +1,8 @@
-import unittest
-from datetime import datetime, timezone
 import functionality.zadania
 from functionality.zadania import *
-from functionality.zadania import calc_diff
+
 import pytest
+
 
 #zad 1
 # z uzyciem klasy
@@ -13,7 +12,6 @@ class TestIsPrime:
         num = 5
 
         assert is_num_prime(num) == True
-
 
 #bez uzycia klasy
 def test_should_return_YES_when_we_provide_first_num():
@@ -45,6 +43,18 @@ def test_should_sorted_elements_after_used_method_quick_sort():
 
 
 #zad.4
+# Zapewnij sprawdzenie przypadków, w których zostanie rzucony wyjątek.
+
+def test_expect_exception_when_TODOS_is_empty():
+    with pytest.raises(Exception):
+        assert check_pos()
+
+def test_except_exception_when_we_provide_wrong_pos():
+    with pytest.raises(NoSuchItemNumber) as exc:
+
+        assert 'list index out of range' == str(exc.value)
+
+
 def test_should_return_list_todos_increased_after_added_note():
     todos = ["Clean my room", "Make my bed", "Go to school", "Do school homework"]
     content = ('Go to bed')
@@ -69,31 +79,23 @@ def test_return_TODOS_with_changed_chosen_note(): #### rzuca blad
 def test_return_empty_list_TODOS_after_deleted_all_notes():
     assert remove_all() == todos.clear()
 
-# Zapewnij sprawdzenie przypadków, w których zostanie rzucony wyjątek.
-
-def test_expect_exception_when_TODOS_is_empty():
-    with pytest.raises(NoMoreTodos):
-        check_pos(0)
-
-
-def test_except_exception_when_we_provide_wrong_pos(): ### ten test rzuca blad -->
-    with pytest.raises(NoSuchItemNumber):
-        check_pos(5)
-
-
 #zad 5
 
-
-
 def test_calc_diff(mocker):
+    case = {
+        'start_time': '2021-11-03T09:22:28+00:00',
+        'end_time': None  # None means that case is currently going on
+    }
+    mocker.patch('functionality.zadania.get_datetimenow',return_value=datetime.now(timezone.utc))
+    time_1 = datetime.fromisoformat('2021-11-03T09:22:28+00:00')
+    time_end = datetime.now(timezone.utc)
 
-    start_time = '2021-11-03T09:22:28+00:00'
-    func = calc_diff()
-    end_time = mocker.patch(functionality.zadania.calc_diff,end_time=datetime.now(timezone.utc))
+    expected = (time_end - time_1).total_seconds()
 
-    expected = end_time - start_time
-    assert func == expected
-
-
+    assert calc_diff(case) == expected
 
 #zad. 6
+
+def test_class_dbhandler(mocker):
+    mock_my_class=mocker.patch("functionality.zadania.DbHandler") #makieta calej klasy dbhandler
+    mock_my_class_show_msg_when_connected=

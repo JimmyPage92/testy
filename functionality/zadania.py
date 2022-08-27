@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from decouple import config
 '''
 Stwórz funkcję sprawdzającą, czy liczba jest pierwsza. Otestuj ją,
 pamiętając równocześnie o otestowaniu każdego edge-case’a (np. 1 nie
@@ -76,11 +77,8 @@ Zapewnij sprawdzenie przypadków, w których zostanie rzucony wyjątek.
 todos = ["Clean my room", "Make my bed", "Go to school", "Do school homework"]
 class NoMoreTodos(Exception):
     pass
-
 class NoSuchItemNumber(Exception):
     pass
-
-
 def check_pos(pos):
     if len(todos) == 0:
         raise NoMoreTodos
@@ -116,12 +114,15 @@ print(f'Teraz mamy puste notatki: {todos}')
 '''
 Rozważ poniższy program:
 '''
+
+def get_datetimenow():
+    return datetime.now(timezone.utc)
 def calc_diff(case):
     end_time = case['end_time']
     start_time = case['start_time']
     start_time_obj = datetime.fromisoformat(start_time)
     if end_time is None:
-        end_time_obj = datetime.now(timezone.utc)
+        end_time_obj = get_datetimenow()
     else:
         end_time_obj = datetime.fromisoformat(end_time)
     return (end_time_obj - start_time_obj).total_seconds()
@@ -152,21 +153,24 @@ datetime.now(). Dlaczego? To już zostawiam Twoim dywagacjom
 '''
 Zad 6.
 Wyobraź sobie, że mamy następującą funkcjonalność w programie:
-from decouple import config
-class Config :
-DB_URL: str = config( 'DB_URL' )
-DB_USERNAME: str = config( 'DB_USERNAME' )
-DB_PASSWORD: str = config( 'DB_PASSWORD' )
-OK_MSG: str = config( 'OK_MSG' )
-NOK_MSG: str = config( 'NOK_MSG' )
-class DbHandler :
-    def connect_to_database (self):
-        return f"I am connecting to {Config.DB_URL} as
-            {Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
-    def show_msg_when_connected (self):
+'''
+class Config:
+    DB_URL: str = config('DB_URL')
+    DB_USERNAME: str = config('DB_USERNAME')
+    DB_PASSWORD: str = config('DB_PASSWORD')
+    OK_MSG: str = config('OK_MSG')
+    NOK_MSG: str = config('NOK_MSG')
+
+class DbHandler:
+    def connect_to_database(self):
+        return f"I am connecting to {Config.DB_URL} as " \
+               f"{Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
+    def show_msg_when_connected(self):
         return f"{Config.OK_MSG}"
-    def show_msg_when_interrputed (self):
+    def show_msg_when_interrputed(self):
         return f"{Config.NOK_MSG}"
+
+'''
 W powyższym kodzie użyliśmy biblioteki python-decouple, która
 umożliwia odczytywanie wartości do kodu ze specjalnego pliku .env
 (Takie rozwiązanie jest często wykorzystywane, gdy nie chcemy
