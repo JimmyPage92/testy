@@ -1,6 +1,8 @@
 from functionality import zadania
 import pytest
 import typing as tp
+from freezegun import freeze_time
+from datetime import datetime, timezone
 
 #zad 1
 # z uzyciem klasy
@@ -74,18 +76,18 @@ def test_except_exception_when_we_provide_wrong_pos():
         zadania.check_pos(-1)
 #zad 5
 
-# def test_calc_diff(mocker):
-#     case = {
-#         'start_time': '2021-11-03T09:22:28+00:00',
-#         'end_time': None  # None means that case is currently going on
-#     }
-#     mocker.patch('functionality.zadania.get_datetimenow',return_value=datetime.now(timezone.utc))
-#     time_1 = datetime.fromisoformat('2021-11-03T09:22:28+00:00')
-#     time_end = datetime.now(timezone.utc)
-#
-#     expected = (time_end - time_1).total_seconds()
-#
-#     assert calc_diff(case) == expected
+@freeze_time("2022-08-28 20:00:00", tz_offset=0)
+def test_freeze_time():
+    case = {
+        'start_time': '2021-11-03T09:22:28+00:00',
+        'end_time': None  # None means that case is currently going on
+    }
+    assert datetime.now() == datetime(2022, 8, 28, 20, 0, 0)
+    start_time = '2021-11-03T09:22:28+00:00'
+    start_time_obj = datetime.fromisoformat(start_time)
+    timer = (datetime.now(timezone.utc) - start_time_obj).total_seconds()
+
+    assert timer == zadania.calc_diff(case)
 
 #zad. 6
 #czy w tym zadaniu najpierw trzeba zamokowac STALE z klasy Config ?? i dopiero przetestowac klase
@@ -99,5 +101,3 @@ def test_except_exception_when_we_provide_wrong_pos():
 #
 #     assert expected == actual
 
-def test_class_dbhandler():
-    pass

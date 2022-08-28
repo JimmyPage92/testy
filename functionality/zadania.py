@@ -115,18 +115,15 @@ print(f'Teraz mamy puste notatki: {todos}')
 Rozważ poniższy program:
 '''
 
-def get_datetimenow():
-    return datetime.now(timezone.utc)
 def calc_diff(case):
     end_time = case['end_time']
     start_time = case['start_time']
     start_time_obj = datetime.fromisoformat(start_time)
     if end_time is None:
-        end_time_obj = get_datetimenow()
+        end_time_obj = datetime.now(timezone.utc)
     else:
         end_time_obj = datetime.fromisoformat(end_time)
     return (end_time_obj - start_time_obj).total_seconds()
-
 
 def main():
     case = {
