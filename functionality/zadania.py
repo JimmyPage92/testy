@@ -154,25 +154,25 @@ datetime.now(). Dlaczego? To już zostawiam Twoim dywagacjom
 Zad 6.
 Wyobraź sobie, że mamy następującą funkcjonalność w programie:
 '''
-class Config:
-    DB_URL: str = config('DB_URL')
-    DB_USERNAME: str = config('DB_USERNAME')
-    DB_PASSWORD: str = config('DB_PASSWORD')
-    OK_MSG: str = config('OK_MSG')
-    NOK_MSG: str = config('NOK_MSG')
-
-class DbHandler:
-    def connect_to_database(self):
-        return f"I am connecting to {Config.DB_URL} as " \
-               f"{Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
-    def show_msg_when_connected(self):
-        return f"{Config.OK_MSG}"
-    def show_msg_when_interrputed(self):
-        return f"{Config.NOK_MSG}"
-
-x=DbHandler().show_msg_when_connected()
-
-print(x)
+# class Config:
+#     DB_URL: str = config('DB_URL')
+#     DB_USERNAME: str = config('DB_USERNAME')
+#     DB_PASSWORD: str = config('DB_PASSWORD')
+#     OK_MSG: str = config('OK_MSG')
+#     NOK_MSG: str = config('NOK_MSG')
+#
+# class DbHandler:
+#     def connect_to_database(self):
+#         return f"I am connecting to {Config.DB_URL} as " \
+#                f"{Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
+#     def show_msg_when_connected(self):
+#         return f"{Config.OK_MSG}"
+#     def show_msg_when_interrputed(self):
+#         return f"{Config.NOK_MSG}"
+#
+# x=DbHandler().show_msg_when_connected()
+#
+# print(x)
 '''
 W powyższym kodzie użyliśmy biblioteki python-decouple, która
 umożliwia odczytywanie wartości do kodu ze specjalnego pliku .env
