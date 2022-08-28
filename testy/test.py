@@ -74,18 +74,18 @@ def test_except_exception_when_we_provide_wrong_pos():
         zadania.check_pos(-1)
 #zad 5
 
-def test_calc_diff(mocker):
-    case = {
-        'start_time': '2021-11-03T09:22:28+00:00',
-        'end_time': None  # None means that case is currently going on
-    }
-    mocker.patch('functionality.zadania.get_datetimenow',return_value=datetime.now(timezone.utc))
-    time_1 = datetime.fromisoformat('2021-11-03T09:22:28+00:00')
-    time_end = datetime.now(timezone.utc)
-
-    expected = (time_end - time_1).total_seconds()
-
-    assert calc_diff(case) == expected
+# def test_calc_diff(mocker):
+#     case = {
+#         'start_time': '2021-11-03T09:22:28+00:00',
+#         'end_time': None  # None means that case is currently going on
+#     }
+#     mocker.patch('functionality.zadania.get_datetimenow',return_value=datetime.now(timezone.utc))
+#     time_1 = datetime.fromisoformat('2021-11-03T09:22:28+00:00')
+#     time_end = datetime.now(timezone.utc)
+#
+#     expected = (time_end - time_1).total_seconds()
+#
+#     assert calc_diff(case) == expected
 
 #zad. 6
 #czy w tym zadaniu najpierw trzeba zamokowac STALE z klasy Config ?? i dopiero przetestowac klase
