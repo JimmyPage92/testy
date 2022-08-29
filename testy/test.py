@@ -83,11 +83,13 @@ def test_freeze_time():
         'end_time': None  # None means that case is currently going on
     }
     assert datetime.now() == datetime(2022, 8, 28, 20, 0, 0)
-    start_time = '2021-11-03T09:22:28+00:00'
-    start_time_obj = datetime.fromisoformat(start_time)
+
+    start_time_obj = datetime.fromisoformat('2021-11-03T09:22:28+00:00')
     timer = (datetime.now(timezone.utc) - start_time_obj).total_seconds()
 
     assert timer == zadania.calc_diff(case)
+
+
 
 #zad. 6
 #czy w tym zadaniu najpierw trzeba zamokowac STALE z klasy Config ?? i dopiero przetestowac klase
