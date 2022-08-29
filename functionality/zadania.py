@@ -79,14 +79,11 @@ Zapewnij sprawdzenie przypadków, w których zostanie rzucony wyjątek.
 
 todos = ["Clean my room", "Make my bed", "Go to school", "Do school homework"]
 
-
 class NoMoreTodos(Exception):
     pass
 
-
 class NoSuchItemNumber(Exception):
     pass
-
 
 def check_pos(pos):
     if len(todos) == 0:
@@ -98,16 +95,13 @@ def check_pos(pos):
 def add_todo(content):
     todos.append(content)
 
-
 def remove_todo(pos):
     check_pos(pos)
     todos.pop(pos)
 
-
 def edit_todo(pos, content):
     check_pos(pos)
     todos[pos] = content
-
 
 def remove_all():
     todos.clear()
@@ -128,7 +122,6 @@ print(f'Teraz mamy puste notatki: {todos}')
 '''
 Rozważ poniższy program:
 '''
-
 
 def calc_diff(case):
     end_time = case['end_time']
