@@ -1,5 +1,5 @@
 from freezegun import freeze_time
-from datetime import datetime,timezone
+from datetime import datetime, timezone
 
 @freeze_time("2022-08-27 20:00:00", tz_offset=0)
 def test_freeze_time():
